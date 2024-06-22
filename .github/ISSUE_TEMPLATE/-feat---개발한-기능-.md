@@ -1,6 +1,6 @@
 ---
 name: "[FEAT] {개발한 기능}"
-about: Describe this issue template's purpose here.
+about: "[FEAT] {개발한 기능}"
 title: ''
 labels: ''
 assignees: ''
