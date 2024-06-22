@@ -1,7 +1,7 @@
 ---
-name: "[FEAT] {개발한 기능}"
-about: "[FEAT] {개발한 기능}"
-title: ''
+name: "[FEAT] 기능 개발 ISSUE TEMPLATE"
+about: "[FEAT] 기능 개발 ISSUE TEMPLATE"
+title: "[FEAT] {기능 개발}"
 labels: ''
 assignees: ''
 
