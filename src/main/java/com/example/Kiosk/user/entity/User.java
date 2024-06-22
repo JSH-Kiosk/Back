@@ -23,15 +23,6 @@ public class User {
     @Column(unique = true, nullable = false, length = 20)
     private String username;
 
-    @Column(nullable = false, length = 20)
-    private String email;
-
-    @Column(nullable = false, length = 13)
-    private String phoneNumber;
-
-    @Column(nullable = false, length = 60)
-    private String password;
-
     @CreatedDate
     @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
@@ -42,4 +33,40 @@ public class User {
 
     public User() {}
 
+    public User(String username) {
+        this.username = username;
+    }
+
+    public User(Long id, String username, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.username = username;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
 }
