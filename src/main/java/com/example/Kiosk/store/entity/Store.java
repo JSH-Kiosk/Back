@@ -21,7 +21,6 @@ public class Store {
     @Column(name = "store_id")
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = LAZY)
     private User user;
 
@@ -36,4 +35,34 @@ public class Store {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    public Store() {
+    }
+
+    public Store(Long id, User user, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.user = user;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
 }

@@ -15,7 +15,6 @@ public class OrderItemOption {
     @Column(name = "order_item_option_id")
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = LAZY)
     private OrderItem orderItem;
 

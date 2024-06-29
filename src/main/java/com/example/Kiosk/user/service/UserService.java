@@ -23,9 +23,5 @@ public class UserService {
         return all;
     }
 
-    public User findByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        return user.orElseThrow(() -> new IllegalStateException());
-    }
 
 }

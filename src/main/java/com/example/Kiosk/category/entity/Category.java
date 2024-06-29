@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -26,7 +27,7 @@ public class Category {
     @Column
     private Long priority;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = LAZY)
     private Store store;
 
     @CreatedDate

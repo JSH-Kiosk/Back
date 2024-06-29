@@ -17,11 +17,9 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = LAZY)
     private Order order;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = LAZY)
     private Item item;
 

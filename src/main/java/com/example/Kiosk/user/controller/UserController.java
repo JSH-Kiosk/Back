@@ -24,9 +24,8 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<User> readUserByName(@PathVariable("username") String username) {
-        User user = userService.findByUsername(username);
-        return ResponseEntity.ok(user);
+    public ResponseEntity readUserByName(@PathVariable("username") String username) {
+        return ResponseEntity.ok("ok");
     }
 
     @PatchMapping

@@ -21,7 +21,6 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = LAZY)
     private Store store;
 
