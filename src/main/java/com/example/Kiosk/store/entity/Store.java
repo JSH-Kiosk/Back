@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -21,6 +22,7 @@ public class Store {
     private Long id;
 
     @Column(nullable = false)
+    @ManyToOne(fetch = LAZY)
     private User user;
 
     @Column(unique = true, nullable = false, length = 20)
