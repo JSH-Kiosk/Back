@@ -20,8 +20,14 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(unique = true, nullable = false, length = 20)
-    private String username;
+    @Column(nullable = false, length = 30)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private Boolean isDeleted;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -31,35 +37,32 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public User() {}
-
-    public User(String username) {
-        this.username = username;
+    public User() {
     }
 
-    public User(Long id, String username, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(Long id, String email, String password, Boolean isDeleted, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.isDeleted = isDeleted;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
     }
 
     public LocalDateTime getCreatedAt() {

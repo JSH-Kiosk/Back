@@ -29,16 +29,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody String username) {
-
-        System.out.println(username);
-
-        User user = userService.save(username);
-
-        return ResponseEntity.ok(user);
-    }
-
     @PatchMapping
     public ResponseEntity updateUser() {
         return ResponseEntity.ok("patch user");
