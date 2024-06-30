@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class ItemOptionService {
 
-    private ItemOptionRepository itemOptionRepository;
+    private final ItemOptionRepository itemOptionRepository;
 
     public ItemOptionService(ItemOptionRepository itemOptionRepository) {
         this.itemOptionRepository = itemOptionRepository;
