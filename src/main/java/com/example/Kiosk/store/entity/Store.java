@@ -1,5 +1,6 @@
-package com.example.Kiosk.user.entity;
+package com.example.Kiosk.store.entity;
 
+import com.example.Kiosk.user.entity.User;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -7,27 +8,24 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-
 @Entity
-@Table(name = "users")
+@Table(name = "stores")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Store {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "store_id")
     private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String email;
+    @ManyToOne(fetch = LAZY)
+    private User user;
 
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private Boolean isDeleted;
+    @Column(unique = true, nullable = false, length = 20)
+    private String name;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -37,14 +35,13 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public User() {
+    public Store() {
     }
 
-    public User(Long id, String email, String password, Boolean isDeleted, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Store(Long id, User user, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.isDeleted = isDeleted;
+        this.user = user;
+        this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -53,16 +50,12 @@ public class User {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public Boolean getDeleted() {
-        return isDeleted;
+    public String getName() {
+        return name;
     }
 
     public LocalDateTime getCreatedAt() {

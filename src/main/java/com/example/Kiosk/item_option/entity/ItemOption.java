@@ -1,5 +1,6 @@
-package com.example.Kiosk.user.entity;
+package com.example.Kiosk.item_option.entity;
 
+import com.example.Kiosk.item.entity.Item;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -7,27 +8,26 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-
 @Entity
-@Table(name = "users")
+@Table(name = "item_options")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
-
+public class ItemOption {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "item_option_id")
     private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String email;
+    @ManyToOne(fetch = LAZY)
+    private Item item;
 
-    @Column(nullable = false)
-    private String password;
+    private String name;
 
-    @Column(nullable = false)
-    private Boolean isDeleted;
+    private String description;
+
+    private String imageUrl;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -37,14 +37,15 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public User() {
+    public ItemOption() {
     }
 
-    public User(Long id, String email, String password, Boolean isDeleted, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ItemOption(Long id, Item item, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.isDeleted = isDeleted;
+        this.item = item;
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -53,16 +54,20 @@ public class User {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public Item getItem() {
+        return item;
     }
 
-    public String getPassword() {
-        return password;
+    public String getName() {
+        return name;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public LocalDateTime getCreatedAt() {

@@ -1,5 +1,6 @@
-package com.example.Kiosk.user.entity;
+package com.example.Kiosk.category.entity;
 
+import com.example.Kiosk.store.entity.Store;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -7,27 +8,27 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-
 @Entity
-@Table(name = "users")
+@Table(name = "categories")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "category_id")
     private Long id;
 
-    @Column(nullable = false, length = 30)
-    private String email;
+    @Column(unique = true, nullable = false, length = 20)
+    private String name;
 
-    @Column(nullable = false)
-    private String password;
+    @Column
+    private Long priority;
 
-    @Column(nullable = false)
-    private Boolean isDeleted;
+    @ManyToOne(fetch = LAZY)
+    private Store store;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -37,14 +38,15 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public User() {
+
+    public Category() {
     }
 
-    public User(Long id, String email, String password, Boolean isDeleted, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Category(Long id, String name, Long priority, Store store, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.isDeleted = isDeleted;
+        this.name = name;
+        this.priority = priority;
+        this.store = store;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -53,16 +55,16 @@ public class User {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public String getPassword() {
-        return password;
+    public Long getPriority() {
+        return priority;
     }
 
-    public Boolean getDeleted() {
-        return isDeleted;
+    public Store getStore() {
+        return store;
     }
 
     public LocalDateTime getCreatedAt() {

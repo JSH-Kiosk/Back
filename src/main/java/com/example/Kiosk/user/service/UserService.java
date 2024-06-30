@@ -23,14 +23,5 @@ public class UserService {
         return all;
     }
 
-    public User findByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        return user.orElseThrow(() -> new IllegalStateException());
-    }
 
-    @Transactional(readOnly = false)
-    public User save(String username) {
-        User user = userRepository.save(new User(username));
-        return user;
-    }
 }

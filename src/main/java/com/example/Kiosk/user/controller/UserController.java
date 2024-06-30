@@ -24,19 +24,8 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<User> readUserByName(@PathVariable("username") String username) {
-        User user = userService.findByUsername(username);
-        return ResponseEntity.ok(user);
-    }
-
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody String username) {
-
-        System.out.println(username);
-
-        User user = userService.save(username);
-
-        return ResponseEntity.ok(user);
+    public ResponseEntity readUserByName(@PathVariable("username") String username) {
+        return ResponseEntity.ok("ok");
     }
 
     @PatchMapping
