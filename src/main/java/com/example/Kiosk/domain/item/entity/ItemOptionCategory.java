@@ -11,26 +11,20 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "item_options")
+@Table(name = "item_option_categories")
 @EntityListeners(AuditingEntityListener.class)
-public class ItemOption {
+public class ItemOptionCategory {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "item_option_id")
+    @Column(name = "item_option_category_id")
     private Long id;
 
     @ManyToOne(fetch = LAZY)
     private Item item;
 
-    @Column(length = 255, nullable = false)
-    private String name;
-
-    @Column(length = 255, nullable = false)
-    private String description;
-
-    @Column(length = 255)
-    private String imageUrl;
+    @Column(nullable = false, length = 20)
+    private String optionName;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
@@ -40,42 +34,32 @@ public class ItemOption {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public ItemOption() {
+    public ItemOptionCategory() {
     }
 
-    public ItemOption(Long id, Item item, String name, String description, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public ItemOptionCategory(Long id, Item item, String optionName, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.item = item;
-        this.name = name;
-        this.description = description;
-        this.imageUrl = imageUrl;
+        this.optionName = optionName;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-   public Long getId() {
+    public Long getId() {
         return id;
-   }
+    }
 
-   public Item getItem() {
+    public Item getItem() {
         return item;
-   }
+    }
 
-   public String getName() {
-        return name;
-   }
+    public String getOptionName() {
+        return optionName;
+    }
 
-   public String getDescription() {
-        return description;
-   }
-
-   public String getImageUrl() {
-        return imageUrl;
-   }
-
-   public LocalDateTime getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
-   }
+    }
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
